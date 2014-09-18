@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="01_HelloSifteo" default="01_HelloSifteo" basedir=".">
+    <property name="build.debug" value="true"/>
+    <property name="build.optimize" value="false"/>
+    <property name="build.dir" value="build"/>
+    <property name="product.name" value="01_HelloSifteo.dll"/>
+    <property name="sdk.dir" value="../../dependencies/experimental"/>
+    <target name="01_HelloSifteo" description="Distributable Build of 01_HelloSifteo">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/assets/images"/>
+        <mkdir dir="${build.dir}/assets/sounds"/>
+        <mkdir dir="${build.dir}/assets/data"/>
+        <csc target="library" output="${build.dir}/${product.name}" debug="${build.debug}" optimize="${build.optimize}">
+            <nowarn>
+            </nowarn>
+            <sources>
+                <include name="./*.cs" />
+            </sources>
+            <references>
+                <lib>
+                    <include name="${sdk.dir}"/>
+                </lib>
+                <include name="System.dll" />
+                <include name="Sifteo.dll" />
+                <include name="JsonFx.dll"/>
+            </references>
+        </csc>
+        <copy todir="${build.dir}/assets/images">
+            <fileset basedir="assets/images">
+                <include name="*sftbndl*" />
+                <include name="*siftbndl*" />
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/assets/sounds">
+            <fileset basedir="assets/sounds">
+                <include name="*.mp3" />
+                <include name="*.wav" />
+            </fileset>
+        </copy>
+        <copy file="coverArt.png" tofile="${build.dir}/coverArt.png" />
+        <copy file="internalArt.png" tofile="${build.dir}/internalArt.png" />
+        <script language="C#">
+            <code>
+<![CDATA[
+public static void ScriptMain(Project project) {
+    project.Log(Level.Info, "Writing Production Manifest");
+    StreamReader manifest = new StreamReader("manifest.json");
+    StreamWriter outManifest = new StreamWriter(Path.Combine(project.Properties["build.dir"], "manifest.json"));
+    string line = null;
+    while(null != (line = manifest.ReadLine())) {
+        if (line.Contains("server")) {
+            outManifest.WriteLine("\t\t\"assembly\":\""+project.Properties["product.name"]+"\",");
+        } else {
+            outManifest.WriteLine(line);
+        }
+    }
+    outManifest.Close();
+    manifest.Close();
+}
+]]>
+            </code>
+        </script>       
+    </target>
+    <target name="clean">
+        <delete dir="${build.dir}" failonerror="false"/>
+  </target> 
+</project>
+

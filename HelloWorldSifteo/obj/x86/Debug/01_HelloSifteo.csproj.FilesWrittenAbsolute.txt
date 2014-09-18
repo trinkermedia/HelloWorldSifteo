@@ -1,0 +1,6 @@
+/Applications/sifteo-sdk/demos/01_HelloSifteo/bin/Debug/01_HelloSifteo.exe.mdb
+/Applications/sifteo-sdk/demos/01_HelloSifteo/bin/Debug/01_HelloSifteo.exe
+/Applications/sifteo-sdk/demos/01_HelloSifteo/obj/x86/Debug/01_HelloSifteo.exe
+/Applications/sifteo-sdk/demos/01_HelloSifteo/obj/x86/Debug/01_HelloSifteo.exe.mdb
+/Applications/sifteo-sdk/demos/01_HelloSifteo/bin/Debug/Sifteo.dll
+/Applications/sifteo-sdk/demos/01_HelloSifteo/bin/Debug/JsonFx.dll

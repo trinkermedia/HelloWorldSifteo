@@ -1,0 +1,16 @@
+{"app": {
+    "title": "01. Hello Sifteo",
+    "description": "This demo app illustrates the basic structure of an app, and demonstrates some of the ways you can draw graphics on a Cube.",
+    "version": "1.0.0",
+    "runtime" : "executable",
+		"assembly":"01_HelloSifteo.dll",
+    "arguments": ["-x", "-y"],
+    "appModule": "UNUSED",
+    "requiredSiftCount": 1,
+    "imagesPath": "assets/images",
+    "soundsPath": "assets/sounds",
+    "instructions": "assets/instructions",
+    "coverArt": "coverArt.png",
+    "internalArt": "internalArt.png"
+  }
+}
